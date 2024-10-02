@@ -60,7 +60,7 @@ int main() {
 
     int src;
     printf("Enter the Number of Vertices: %d\n", n);
-    int v;
+    
     scanf("%d", &v);
     printf("Enter the Source Vertex: ");
     scanf("%d", &src);
