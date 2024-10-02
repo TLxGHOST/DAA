@@ -1,0 +1,6 @@
+** Instructions **
+
+input file name: 8077_LabNO_experimentNO_in.dat
+output file name: 8077_LabNO_experimentNO_out.dat
+C file name: 8077_LabNO_experimentNO..Filename.c
+Variables for output calculations etc: should be variableName_077
