@@ -5,41 +5,41 @@
 #define MAX 100
 #define INF INT_MAX
 
-int graph[MAX][MAX], dist[MAX], prev[MAX], visited[MAX];
+int graph_8076[MAX][MAX], dist_8076[MAX], prev_8076[MAX],  visited_8076[MAX];
 int n;
 
-void dijkstra(int src) {
+void dijkstra_8076(int src) {
     for (int i = 0; i < n; i++) {
-        dist[i] = INF;
-        prev[i] = -1;
-        visited[i] = 0;
+        dist_8076[i] = INF;
+        prev_8076[i] = -1;
+         visited_8076[i] = 0;
     }
-    dist[src] = 0;
+    dist_8076[src] = 0;
 
     for (int i = 0; i < n - 1; i++) {
         int min = INF, u = -1;
         for (int j = 0; j < n; j++) {
-            if (!visited[j] && dist[j] < min) {
-                min = dist[j];
+            if (! visited_8076[j] && dist_8076[j] < min) {
+                min = dist_8076[j];
                 u = j;
             }
         }
 
         if (u == -1) break;
-        visited[u] = 1;
+         visited_8076[u] = 1;
 
         for (int v = 0; v < n; v++) {
-            if (!visited[v] && graph[u][v] && dist[u] != INF && dist[u] + graph[u][v] < dist[v]) {
-                dist[v] = dist[u] + graph[u][v];
-                prev[v] = u;
+            if (! visited_8076[v] && graph_8076[u][v] && dist_8076[u] != INF && dist_8076[u] + graph_8076[u][v] < dist_8076[v]) {
+                dist_8076[v] = dist_8076[u] + graph_8076[u][v];
+                prev_8076[v] = u;
             }
         }
     }
 }
 
-void printPath(int j) {
-    if (prev[j] == -1) return;
-    printPath(prev[j]);
+void printPath_8076(int j) {
+    if (prev_8076[j] == -1) return;
+    printPath_8076(prev_8076[j]);
     printf("->%d", j + 1);
 }
 
@@ -53,7 +53,7 @@ int main() {
     fscanf(file, "%d", &n);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            fscanf(file, "%d", &graph[i][j]);
+            fscanf(file, "%d", &graph_8076[i][j]);
         }
     }
     fclose(file);
@@ -66,16 +66,16 @@ int main() {
     scanf("%d", &src);
     src--;
 
-    dijkstra(src);
+    dijkstra_8076(src);
 
     printf("Source Destination Cost Path\n");
     for (int i = 0; i < n; i++) {
-        printf("%d %d %d ", src + 1, i + 1, dist[i]);
-        if (dist[i] == INF) {
+        printf("%d %d %d ", src + 1, i + 1, dist_8076[i]);
+        if (dist_8076[i] == INF) {
             printf("-\n");
         } else {
             printf("%d", src + 1);
-            printPath(i);
+            printPath_8076(i);
             printf("\n");
         }
     }
