@@ -4,7 +4,7 @@
 
 #define INF INT_MAX
 
-void readGraph(int n, int graph[n][n], const char *filename) {
+void readGraph_8076(int n, int graph[n][n], const char *filename) {
     FILE *file = fopen(filename, "r");
     if (!file) {
         printf("Error opening file.\n");
@@ -18,7 +18,7 @@ void readGraph(int n, int graph[n][n], const char *filename) {
     fclose(file);
 }
 
-int minKey(int key[], int mstSet[], int n) {
+int minkey_8076(int key[], int mstSet[], int n) {
     int min = INF, min_index;
     for (int v = 0; v < n; v++) {
         if (mstSet[v] == 0 && key[v] < min) {
@@ -28,7 +28,7 @@ int minKey(int key[], int mstSet[], int n) {
     return min_index;
 }
 
-void printMST(int parent[], int n, int graph[n][n]) {
+void printMST_8076(int parent[], int n, int graph[n][n]) {
     int totalWeight = 0;
     int mst[n][n];
     for (int i = 0; i < n; i++) {
@@ -51,17 +51,17 @@ void printMST(int parent[], int n, int graph[n][n]) {
     printf("Total Weight of the Spanning Tree: %d\n", totalWeight);
 }
 
-void primMST(int n, int graph[n][n]) {
+void primMST(int n, int graph[n][n], int startNode) {
     int parent[n];
     int key[n];
     int mstSet[n];
     for (int i = 0; i < n; i++) {
         key[i] = INF, mstSet[i] = 0;
     }
-    key[0] = 0;
-    parent[0] = -1;
+    key[startNode] = 0;
+    parent[startNode] = -1;
     for (int count = 0; count < n - 1; count++) {
-        int u = minKey(key, mstSet, n);
+        int u = minkey_8076(key, mstSet, n);
         mstSet[u] = 1;
         for (int v = 0; v < n; v++) {
             if (graph[u][v] && mstSet[v] == 0 && graph[u][v] < key[v]) {
@@ -69,15 +69,17 @@ void primMST(int n, int graph[n][n]) {
             }
         }
     }
-    printMST(parent, n, graph);
+    printMST_8076(parent, n, graph);
 }
 
 int main() {
-    int n;
+    int n, startNode;
     printf("Enter the Number of Vertices: ");
     scanf("%d", &n);
     int graph[n][n];
-    readGraph(n, graph, "inUnAdjMat.dat");
-    primMST(n, graph);
+    readGraph_8076(n, graph, "inUnAdjMat_8076.dat");
+    printf("Enter the Starting Node  : ");
+    scanf("%d", &startNode);
+    primMST(n, graph, startNode);
     return 0;
 }

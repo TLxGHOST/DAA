@@ -5,69 +5,69 @@
 
 typedef struct {
     int u, v, w;
-} Edge;
+} Edge_8076;
 
-Edge edges[MAX];
-int parent[MAX];
+Edge_8076 edges_8076[MAX];
+int parent_8076[MAX];
 int n, m;
 
-int find(int i) {
-    while (parent[i] != i)
-        i = parent[i];
+int find_8076(int i) {
+    while (parent_8076[i] != i)
+        i = parent_8076[i];
     return i;
 }
 
-void union1(int i, int j) {
-    int a = find(i);
-    int b = find(j);
-    parent[a] = b;
+void union1_8076(int i, int j) {
+    int a = find_8076(i);
+    int b = find_8076(j);
+    parent_8076[a] = b;
 }
 
-int cmp(const void *a, const void *b) {
-    Edge *edgeA = (Edge *)a;
-    Edge *edgeB = (Edge *)b;
+int cmp_8076(const void *a, const void *b) {
+    Edge_8076 *edgeA = (Edge_8076 *)a;
+    Edge_8076 *edgeB = (Edge_8076 *)b;
     return edgeA->w - edgeB->w;
 }
 
-void kruskal() {
-    int i, j, totalCost = 0;
-    Edge result[MAX];
+void kruskal_8076() {
+    int i, j, ttlCost_8076 = 0;
+    Edge_8076 result[MAX];
 
     for (i = 0; i < n; i++)
-        parent[i] = i;
+        parent_8076[i] = i;
 
-    qsort(edges, m, sizeof(Edge), cmp);
+    qsort(edges_8076, m, sizeof(Edge_8076), cmp_8076);
 
     for (i = 0, j = 0; i < m && j < n - 1; i++) {
-        int u = edges[i].u;
-        int v = edges[i].v;
-        int w = edges[i].w;
+        int u = edges_8076[i].u;
+        int v = edges_8076[i].v;
+        int w = edges_8076[i].w;
 
-        if (find(u) != find(v)) {
-            result[j++] = edges[i];
-            union1(u, v);
-            totalCost += w;
+        if (find_8076(u) != find_8076(v)) {
+            result[j++] = edges_8076[i];
+            union1_8076(u, v);
+            ttlCost_8076 += w;
         }
     }
 
-    printf("Edge\tCost\n");
+    printf("Edge_8076\tCost\n");
     for (i = 0; i < j; i++)
         printf("%d--%d\t%d\n", result[i].u, result[i].v, result[i].w);
-    printf("Total Weight of the Spanning Tree: %d\n", totalCost);
+    printf("Total Weight of the Spanning Tree: %d\n", ttlCost_8076);
 }
 
 int main() {
     int i;
 
-    printf("Enter the number of nodes and edges: ");
+    printf("Enter the number of nodes and edges_8076: ");
     scanf("%d %d", &n, &m);
 
-    printf("Enter the edges (u v w):\n");
+    printf("Enter the edges_8076 (u v w):\n");
     for (i = 0; i < m; i++) {
-        scanf("%d %d %d", &edges[i].u, &edges[i].v, &edges[i].w);
+        scanf("%d %d %d", &edges_8076[i].u, &edges_8076[i].v, &edges_8076[i].w);
     }
 
-    kruskal();
+    kruskal_8076();
 
     return 0;
 }
