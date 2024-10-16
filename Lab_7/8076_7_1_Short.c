@@ -49,8 +49,9 @@ int main() {
         printf("Error opening file\n");
         return 1;
     }
-
-    fscanf(file, "%d", &n);
+ printf("Enter the Number of Vertices: \n");
+    scanf("%d", &n);
+    // fscanf(file, "%d", &n);
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             fscanf(file, "%d", &graph_8076[i][j]);
@@ -59,9 +60,8 @@ int main() {
     fclose(file);
 
     int src;
-    printf("Enter the Number of Vertices: %d\n", n);
-    
-    scanf("%d", &v);
+    // int v;
+   
     printf("Enter the Source Vertex: ");
     scanf("%d", &src);
     src--;
