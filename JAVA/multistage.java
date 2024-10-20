@@ -51,6 +51,7 @@ public class multistage
             }
         }
     }
+
   public void print_cost_matrix(int k[][])
   {
     
@@ -83,6 +84,18 @@ public class multistage
         cost[i]=min;
     }
 }
+
+public static void print_path(int d[],int cost[])
+{
+  int pointer=0;
+  int cos=cost[0];
+    System.out.print("\n Path is 1->");
+    do {
+        System.out.print(" "+d[pointer]+"->");
+        pointer=d[pointer]-1;
+    } while (d[pointer]!=vertex);
+    System.out.println(" "+vertex);
+}
   public static void main(String args[])
   {Scanner sc=new Scanner(System.in);
     System.out.println("ENter number of verticies you want ");
@@ -102,6 +115,6 @@ public class multistage
         System.out.print(elem+" ");
         
     }
-   
+   multistage.print_path(obj.d,obj.cost);
   }
 }
