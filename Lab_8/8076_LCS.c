@@ -2,13 +2,13 @@
 #include <string.h>
 
 
-int lcsLength_8076(char *X, char *Y, int m, int n) {
+int lcsLength_8076(char *X, char *Y_8076, int m, int n) {
     int L_8076[m + 1][n + 1];
     for (int i = 0; i <= m; i++) {
         for (int j = 0; j <= n; j++) {
             if (i == 0 || j == 0)
                 L_8076[i][j] = 0;
-            else if (X[i - 1] == Y[j - 1])
+            else if (X[i - 1] == Y_8076[j - 1])
                 L_8076[i][j] = L_8076[i - 1][j - 1] + 1;
             else
                 L_8076[i][j] = (L_8076[i - 1][j] > L_8076[i][j - 1]) ? L_8076[i - 1][j] : L_8076[i][j - 1];
@@ -18,13 +18,13 @@ int lcsLength_8076(char *X, char *Y, int m, int n) {
 }
 
 
-void findLCS_8076(char *X, char *Y, int m, int n) {
+void findLCS_8076(char *X, char *Y_8076, int m, int n) {
     int L_8076[m + 1][n + 1];
     for (int i = 0; i <= m; i++) {
         for (int j = 0; j <= n; j++) {
             if (i == 0 || j == 0)
                 L_8076[i][j] = 0;
-            else if (X[i - 1] == Y[j - 1])
+            else if (X[i - 1] == Y_8076[j - 1])
                 L_8076[i][j] = L_8076[i - 1][j - 1] + 1;
             else
                 L_8076[i][j] = (L_8076[i - 1][j] > L_8076[i][j - 1]) ? L_8076[i - 1][j] : L_8076[i][j - 1];
@@ -37,7 +37,7 @@ void findLCS_8076(char *X, char *Y, int m, int n) {
 
     int i = m, j = n;
     while (i > 0 && j > 0) {
-        if (X[i - 1] == Y[j - 1]) {
+        if (X[i - 1] == Y_8076[j - 1]) {
             lcs[index - 1] = X[i - 1];
             i--;
             j--;
@@ -53,16 +53,16 @@ void findLCS_8076(char *X, char *Y, int m, int n) {
 }
 
 int main() {
-    char X[100], Y[100];
+    char X[100], Y_8076[100];
     printf("Enter the first string into an array: ");
     scanf("%s", X);
     printf("Enter the second string into an array: ");
-    scanf("%s", Y);
+    scanf("%s", Y_8076);
 
     int m = strlen(X);
-    int n = strlen(Y);
+    int n = strlen(Y_8076);
 
-    findLCS_8076(X, Y, m, n);
+    findLCS_8076(X, Y_8076, m, n);
 
     return 0;
 }

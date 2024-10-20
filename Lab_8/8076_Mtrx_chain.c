@@ -71,7 +71,7 @@ int main() {
     int p[100];
     for (int i = 0; i < n; i++) {
         int row, col;
-        printf("Enter row and col size of A%d: ", i + 1);
+        printf("Enter row and col size of A%d: \n", i + 1);
         scanf("%d %d", &row, &col);
         if (i == 0) {
             p[i] = row;
