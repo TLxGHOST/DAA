@@ -65,18 +65,18 @@ public class Knapsack
         //The final calculation part
 
 
-        for(int i=0;i<this.item;i++)
+        for(int i=0;i<=this.item;i++)
         {
-            for(int j=0;j<this.Knapsacak_capacity;j++)
+            for(int j=0;j<=this.Knapsacak_capacity;j++)
             {
                 if(j==0 || i==0)
                 {
                     chart[i][j]=0;
                 }
-                else if(k[0][i]<=j)
+                else if(k[0][i]<=j && i!=0)
                 {
                     double temp=(double)chart[i-1][j];
-                    double temp2 = (j >= k[0][i]) ? (double)k[1][i] + chart[i-1][j-k[0][i]] : 0;
+                    double temp2 = (double)k[1][i] + chart[i-1][j-k[0][i]] ;
                     chart[i][j]=(int)Math.max(temp,temp2);
                 }
                 else
