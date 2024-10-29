@@ -10,7 +10,7 @@ public class Knapsack
     int item;
 
     public Knapsack(int items, int capacity) {
-        this.chart = new int[items + 1][capacity + 1];
+        chart = new int[items + 1][capacity + 1];
         Knapsack.Profit = new int[items + 1];
         Knapsack.weight = new int[items + 1];
         Knapsacak_capacity = capacity;
