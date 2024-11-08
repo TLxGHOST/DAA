@@ -1,56 +1,41 @@
-
-
 #include <stdio.h>
-#include <stdlib.h>
 
-void Rotate_right_8076(int arr[], int n, int p)
-{
-   int temp=arr[p-1];
-    for(int i=p-1;i>0;i--)
-    {
-         arr[i]=arr[i-1];
-    }
-    arr[0]=temp;
+// Function to swap/exchange the numbers p & q
+void EXCHANGE(int *p, int *q) {
+    int temp = *p;
+    *p = *q;
+    *q = temp;
 }
 
-void main()
-{
-    int n;
-       
-    FILE *inputFile = fopen("8076_1_1_in.dat", "r");
-    if (inputFile == NULL)
-    {
-        printf("Failed to open the input file.\n");
-        return;
-    }
-    fscanf(inputFile, "%d", &n);
-    int mtrx_8076[n][n];
+// Function to rotate the first p2 elements of the array to the right by 1 position
+void ROTATE_RIGHT(int *p1, int p2) {
+    if (p2 <= 1) return; // No need to rotate if p2 is 1 or less
 
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            fscanf(inputFile, "%d", &mtrx_8076[i][j]);
-        }
+    int last = p1[p2 - 1]; // Store the last element
+    for (int i = p2 - 1; i > 0; i--) {
+        EXCHANGE(&p1[i], &p1[i - 1]);
     }
-    fclose(inputFile);
-    Rotate_right_8076(mtrx_8076[0], n, n);
-    FILE *outputFile = fopen("8076_1_1_out.dat", "w");
-    printf("enter value of p1");
-    int p;
-    scanf("%d",&p);
-    Rotate_right_8076(mtrx_8076[0], n, p);
-    
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            fprintf(outputFile, "%d ", mtrx_8076[i][j]);
-        }
-        fprintf(outputFile, "\n");
-    }
-    fclose(outputFile);
-    
-    
+    p1[0] = last; // Place the last element at the first position
+}
 
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int p2 = 3; // Number of elements to rotate
+
+    printf("Original array: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    ROTATE_RIGHT(arr, p2);
+
+    printf("Array after rotating first %d elements to the right: ", p2);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
 }
